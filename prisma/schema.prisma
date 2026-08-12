@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model CroIssue {
+  id          String    @id @default(cuid())
+  issueDate   DateTime  @unique
+  issueNumber Int       @default(1)
+  status      String    @default("published")
+  headline    String
+  dek         String
+  summary     String    @default("")
+  sourceCount Int       @default(0)
+  generatedAt DateTime  @default(now())
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  items       CroItem[]
+
+  @@index([issueDate])
+  @@index([status, issueDate])
+}
+
+model CroItem {
+  id        String   @id @default(cuid())
+  issueId   String
+  rank      Int
+  section   String
+  title     String
+  summary   String
+  detail    String   @default("")
+  takeaway  String   @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  issue     CroIssue @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  sources   CroSource[]
+
+  @@unique([issueId, rank])
+  @@index([issueId])
+  @@index([section])
+}
+
+model CroSource {
+  id          String    @id @default(cuid())
+  itemId      String
+  title       String
+  url         String
+  publisher   String?
+  publishedAt DateTime?
+  excerpt     String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  item        CroItem   @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@unique([itemId, url])
+  @@index([itemId])
+  @@index([url])
+}
