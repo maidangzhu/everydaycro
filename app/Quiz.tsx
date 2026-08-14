@@ -6,6 +6,8 @@ import type { QuizQuestion } from '@/lib/quiz'
 type Props = {
   questions: QuizQuestion[]
   dateISO: string
+  /** 用于区分不同板块的本存档 key（daily / abbr 等） */
+  variant?: string
 }
 
 // ---- 增幅器（Jokers）----
@@ -34,7 +36,7 @@ type Popup = {
 const BASE_SCORE = 100
 const FAST_MS = 10_000
 
-export function DailyQuiz({ questions, dateISO }: Props) {
+export function DailyQuiz({ questions, dateISO, variant = 'daily' }: Props) {
   const [current, setCurrent] = useState(0)
   const [picked, setPicked] = useState<number | null>(null)
   const [done, setDone] = useState(false)
@@ -168,19 +170,34 @@ export function DailyQuiz({ questions, dateISO }: Props) {
     }
   }
 
+  // 答对后自动进入下一题（若有抽卡，等收卡后再走）；答错仍需手动点
+  useEffect(() => {
+    if (!answered || pendingRelic) return
+    if (picked !== question.answerIndex) return
+    const t = setTimeout(next, 900)
+    return () => clearTimeout(t)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [answered, picked, pendingRelic, current])
+
+  const K = {
+    last: `cro-quiz-${variant}-last`,
+    streak: `cro-quiz-${variant}-streak`,
+    best: `cro-quiz-${variant}-best`,
+  }
+
   function persistDay() {
     try {
       const today = dateISO
-      const last = window.localStorage.getItem('cro-quiz-last')
-      const prev = Number(window.localStorage.getItem('cro-quiz-streak') ?? 0)
+      const last = window.localStorage.getItem(K.last)
+      const prev = Number(window.localStorage.getItem(K.streak) ?? 0)
       if (last !== today) {
         const yesterday = new Date(new Date(today).getTime() - 86400000).toISOString().slice(0, 10)
         const nextStreak = last === yesterday ? prev + 1 : 1
-        window.localStorage.setItem('cro-quiz-streak', String(nextStreak))
-        window.localStorage.setItem('cro-quiz-last', today)
+        window.localStorage.setItem(K.streak, String(nextStreak))
+        window.localStorage.setItem(K.last, today)
       }
-      const best = Number(window.localStorage.getItem('cro-quiz-best') ?? 0)
-      if (chips > best) window.localStorage.setItem('cro-quiz-best', String(chips))
+      const best = Number(window.localStorage.getItem(K.best) ?? 0)
+      if (chips > best) window.localStorage.setItem(K.best, String(chips))
     } catch {}
   }
 
@@ -203,10 +220,10 @@ export function DailyQuiz({ questions, dateISO }: Props) {
   // ---- 结算页 ----
   if (done) {
     const best = typeof window !== 'undefined'
-      ? Number(window.localStorage.getItem('cro-quiz-best') ?? 0)
+      ? Number(window.localStorage.getItem(K.best) ?? 0)
       : 0
     const dayStreak = typeof window !== 'undefined'
-      ? Number(window.localStorage.getItem('cro-quiz-streak') ?? 0)
+      ? Number(window.localStorage.getItem(K.streak) ?? 0)
       : 0
     return (
       <div className="quiz-card result">
@@ -299,12 +316,14 @@ export function DailyQuiz({ questions, dateISO }: Props) {
         {answered && !pendingRelic && (
           <div className={`quiz-explain ${picked === question.answerIndex ? 'ok' : 'no'}`}>
             <p className="quiz-explain-head">
-              {picked === question.answerIndex ? '答对了' : '正确答案已标出'}
+              {picked === question.answerIndex ? '答对了，自动进入下一题…' : '正确答案已标出'}
             </p>
             <p>{question.explanation}</p>
-            <button className="quiz-btn" onClick={next}>
-              {isLast ? '查看结果' : '下一题'}
-            </button>
+            {picked !== question.answerIndex && (
+              <button className="quiz-btn" onClick={next}>
+                {isLast ? '查看结果' : '下一题'}
+              </button>
+            )}
           </div>
         )}
       </div>

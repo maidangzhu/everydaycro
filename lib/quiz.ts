@@ -519,6 +519,111 @@ export const QUIZ_BANK: QuizQuestion[] = [
     answerIndex: 0,
     explanation: 'ICH E9 是临床试验统计学原则的国际指南（随机化、盲法、分析集、样本量等），E6 则是 GCP。做统计的常把它当"圣经"。',
   },
+  // ---- 行业缩写 ----
+  {
+    id: 'cra',
+    category: '岗位',
+    question: 'CRA 在 CRO 公司里主要指什么岗位？',
+    options: [
+      'Clinical Research Associate（临床监查员）',
+      '首席注册官（Chief Regulatory Agent）',
+      '客户投诉专员',
+      '药物化学分析师',
+    ],
+    answerIndex: 0,
+    explanation: 'CRA = Clinical Research Associate，临床监查员。CRO 派到各大医院"盯"临床试验的人：做 SDV、核对 CRF、保合规、追入组，是新药上市前的质量守门员，也是 CRO 人力占比最高的岗位之一。',
+  },
+  {
+    id: 'cra-level',
+    category: '岗位',
+    question: '关于 CRA 的职业发展路径，下列说法正确的是？',
+    options: [
+      '从 Junior CRA → CRA I/II → Senior CRA → Lead CRA/项目经理方向',
+      '入行即直接带整个项目',
+      'CRA 只能一直做现场监查，无法晋升',
+      'CRA 必须先当过医生才能入行',
+    ],
+    answerIndex: 0,
+    explanation: 'CRO 里 CRA 通常按经验分层：助理监查员（0-2 年）→ 独立负责数个中心的 CRA I/II → 带教新人的 Senior CRA → 统筹项目监查策略的 Lead CRA/项目经理。',
+  },
+  {
+    id: 'pi',
+    category: '岗位',
+    question: 'PI（Principal Investigator）在临床试验中是？',
+    options: [
+      '主要研究者，对中心现场试验实施负责',
+      '药品的专利持有人',
+      '申办方的财务负责人',
+      '统计软件的运行账号',
+    ],
+    answerIndex: 0,
+    explanation: 'PI = Principal Investigator，主要研究者。某个研究中心（Site）里对试验实施和受试者保护负总责的医生，CRA 现场监查时主要对接的人之一。',
+  },
+  {
+    id: 'pv-abbr',
+    category: '岗位',
+    question: 'PV 这个缩写对应哪个职能？',
+    options: [
+      'Pharmacovigilance（药物警戒），监测药品不良反应',
+      '药品的物理验证',
+      '患者探视（Patient Visit）',
+      '方案版本（Protocol Version）',
+    ],
+    answerIndex: 0,
+    explanation: 'PV = Pharmacovigilance，药物警戒。贯穿药品全生命周期，收集、评估、预防不良反应。AI 正在用来自动化处理海量安全性报告。',
+  },
+  {
+    id: 'crm',
+    category: '岗位',
+    question: '在 CRO 团队里，CRM 通常指？',
+    options: [
+      'Clinical Research Manager（临床研发经理），管理 CRA 团队与项目',
+      '客户关系管理系统',
+      '病例报告表管理',
+      '中心药房管理员',
+    ],
+    answerIndex: 0,
+    explanation: 'CRO 语境下 CRM 多指 Clinical Research Manager（临床研发经理/监查经理），负责管理 CRA 团队、统筹项目监查质量与进度——CRA 往上走的一条管理路线。注意别和通用的"客户关系管理"混淆。',
+  },
+  {
+    id: 'ctc',
+    category: '岗位',
+    question: 'CTC 在临床研究里常指哪类角色/文件？',
+    options: [
+      'Clinical Trial Coordinator（临床研究协调员）或 Clinical Trial Certificate 类概念',
+      '药品定价委员会',
+      '化学合成技术员',
+      '患者投诉热线',
+    ],
+    answerIndex: 0,
+    explanation: 'CTC 在不同公司含义略有差异：常指 Clinical Trial Coordinator（临床研究协调员，类似 CRC，协助 PI 在中心执行试验、整理资料），也可指临床试验相关批件/合同类概念。看到具体上下文再判断，但核心都围绕"协调/文件"这块。',
+  },
+  {
+    id: 'edc-abbr',
+    category: '工具',
+    question: 'EDC 这三个字母展开是？',
+    options: [
+      'Electronic Data Capture（电子数据采集）',
+      '伦理文件中心',
+      '欧洲药品委员会',
+      '电子病历卡',
+    ],
+    answerIndex: 0,
+    explanation: 'EDC = Electronic Data Capture，电子数据采集系统。录入、核查、管理 CRF/eCRF 数据，是现代临床数据管理的核心，也是 AI 工具发力的环节。',
+  },
+  {
+    id: 'site',
+    category: 'CRO 基础',
+    question: '临床试验里说的"中心（Site）"一般指？',
+    options: [
+      '具体执行试验的医院/研究机构',
+      '申办方的总部大楼',
+      '药品的生产车间',
+      '统计分析的机房',
+    ],
+    answerIndex: 0,
+    explanation: 'Site（研究中心）是真正开展试验、收治受试者的医院或研究机构，由 PI 牵头。CRA 现场监查"跑现场"跑的就是这些 Site。',
+  },
 ]
 
 /** 按日期稳定地从题库轮换抽 n 题。同一天结果一致。 */
@@ -534,4 +639,92 @@ export function pickDailyQuestions(dateISO: string, count = 3): QuizQuestion[] {
     ;[pool[i], pool[j]] = [pool[j], pool[i]]
   }
   return pool.slice(0, count)
+}
+
+// ---- 缩写速记板块 ----
+
+type Abbr = {
+  abbr: string
+  full: string
+  zh: string
+  note: string
+}
+
+/** 临床研究 / CRO 常见缩写词表。每天从中抽几个，自动生成选择题。 */
+const ABBRS: Abbr[] = [
+  { abbr: 'CRO', full: 'Contract Research Organization', zh: '合同研究组织', note: '承接药企临床试验外包的公司，如 IQVIA、泰格、药明康德。' },
+  { abbr: 'CRA', full: 'Clinical Research Associate', zh: '临床监查员', note: 'CRO 派到各中心盯试验的人：做 SDV、保合规、追入组。' },
+  { abbr: 'CRC', full: 'Clinical Research Coordinator', zh: '临床研究协调员', note: '常驻中心协助 PI 执行试验、整理资料、协调受试者。' },
+  { abbr: 'PI', full: 'Principal Investigator', zh: '主要研究者', note: '某个中心对试验实施和受试者保护负总责的医生。' },
+  { abbr: 'EDC', full: 'Electronic Data Capture', zh: '电子数据采集系统', note: '录入、核查、管理 eCRF 数据的系统，AI 工具的发力点。' },
+  { abbr: 'CRF', full: 'Case Report Form', zh: '病例报告表', note: '按方案为每位受试者采集数据的标准表格（多为 eCRF）。' },
+  { abbr: 'GCP', full: 'Good Clinical Practice', zh: '药物临床试验质量管理规范', note: '保护受试者 + 保证数据可信的国际标准。' },
+  { abbr: 'PV', full: 'Pharmacovigilance', zh: '药物警戒', note: '收集、评估、预防药品不良反应，贯穿全生命周期。' },
+  { abbr: 'SAE', full: 'Serious Adverse Event', zh: '严重不良事件', note: '致死、危及生命、住院、致残等，需限期上报。' },
+  { abbr: 'AE', full: 'Adverse Event', zh: '不良事件', note: '试验中任何不利医学事件，不一定与药物相关。' },
+  { abbr: 'IRB', full: 'Institutional Review Board', zh: '机构审查委员会 / 伦理委员会', note: '独立审查方案与知情同意，核心是保护受试者。' },
+  { abbr: 'SDV', full: 'Source Data Verification', zh: '源数据核查', note: 'CRA 把 CRF/EDC 数据与原始病历逐条比对。' },
+  { abbr: 'ICH', full: 'International Council for Harmonisation', zh: '国际人用药品注册技术协调会', note: '协调各国技术要求（如 E6 GCP、E9 统计）。' },
+  { abbr: 'ITT', full: 'Intention-To-Treat', zh: '意向性治疗（分析）', note: '按最初随机分组分析所有人，保持组间可比。' },
+  { abbr: 'DCT', full: 'Decentralized Clinical Trial', zh: '去中心化临床试验', note: '远程访视、可穿戴、电子知情，受试者在家也能参与。' },
+  { abbr: 'RWE', full: 'Real-World Evidence', zh: '真实世界证据', note: '来自 EHR、医保、可穿戴设备等真实诊疗数据。' },
+  { abbr: 'PHI', full: 'Protected Health Information', zh: '受保护的健康信息', note: '可识别个人的健康信息，受 HIPAA 等法规保护。' },
+  { abbr: 'CDM', full: 'Clinical Data Management', zh: '临床数据管理', note: '负责试验数据的采集、清理、核查与锁库。' },
+  { abbr: 'DM', full: 'Data Management', zh: '数据管理', note: '即临床数据管理职能，建库、质疑、锁库。' },
+  { abbr: 'PM', full: 'Project Manager', zh: '项目经理', note: '统筹整个临床项目的进度、预算与跨团队沟通。' },
+  { abbr: 'SMO', full: 'Site Management Organization', zh: '中心管理组织', note: '为研究中心提供 CRC 等现场支持的机构。' },
+  { abbr: 'SIV', full: 'Site Initiation Visit', zh: '中心启动访视', note: '正式开启某中心前的启动培训与准备访视。' },
+  { abbr: 'COV', full: 'Close-Out Visit', zh: '中心关闭访视', note: '试验结束后收尾、归档、归还物资的访视。' },
+  { abbr: 'eCRF', full: 'electronic Case Report Form', zh: '电子病例报告表', note: '在 EDC 系统里电子化填写的 CRF。' },
+  { abbr: 'eTMF', full: 'electronic Trial Master File', zh: '电子试验主文档', note: '集中管理试验全部关键文档的电子系统。' },
+  { abbr: 'SUSAR', full: 'Suspected Unexpected Serious Adverse Reaction', zh: '可疑非预期严重不良反应', note: '需加速上报监管的严重不良反应。' },
+  { abbr: 'NDA', full: 'New Drug Application', zh: '新药上市申请', note: '向 FDA 提交的新药注册申请。' },
+  { abbr: 'IND', full: 'Investigational New Drug', zh: '新药临床试验申请', note: '首次进入人体试验前向监管提交的申请。' },
+]
+
+const ABBR_COUNT = 6
+
+/** 从缩写词表生成选择题：4 个选项为不同缩写的中文释义。 */
+function buildAbbrQuestions(pool: Abbr[]): QuizQuestion[] {
+  return pool.map((target, i) => {
+    const distractors = pool.filter((x) => x.abbr !== target.abbr)
+    const options: { label: string; correct: boolean }[] = [
+      { label: `${target.zh}`, correct: true },
+    ]
+    for (let k = 0; k < 3; k += 1) {
+      const d = distractors[(i * 2 + k * 5) % distractors.length]
+      options.push({ label: d.zh, correct: false })
+    }
+    // 确定性打乱选项，记录正确答案位置
+    let s = 0
+    for (const ch of target.abbr) s = (s * 31 + ch.charCodeAt(0)) >>> 0
+    for (let m = options.length - 1; m > 0; m -= 1) {
+      s = (s * 1103515245 + 12345) >>> 0
+      const n = s % (m + 1)
+      ;[options[m], options[n]] = [options[n], options[m]]
+    }
+    const answerIndex = options.findIndex((o) => o.correct)
+    return {
+      id: `abbr-${target.abbr.toLowerCase()}`,
+      category: '缩写',
+      question: `${target.abbr} 是什么的缩写？`,
+      options: options.map((o) => o.label),
+      answerIndex,
+      explanation: `${target.abbr} = ${target.full}（${target.zh}）。${target.note}`,
+    }
+  })
+}
+
+/** 每日缩写速记：按日期抽几个缩写，生成选择题。 */
+export function pickDailyAbbreviations(dateISO: string, count = ABBR_COUNT): QuizQuestion[] {
+  let seed = 0
+  for (const ch of dateISO) seed = (seed * 131 + ch.charCodeAt(0) + 7) >>> 0
+
+  const pool = ABBRS.slice()
+  for (let i = pool.length - 1; i > 0; i -= 1) {
+    seed = (seed * 1103515245 + 12345) >>> 0
+    const j = seed % (i + 1)
+    ;[pool[i], pool[j]] = [pool[j], pool[i]]
+  }
+  return buildAbbrQuestions(pool.slice(0, count))
 }

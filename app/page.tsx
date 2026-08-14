@@ -1,5 +1,5 @@
 import { getLatestCroIssue } from '@/lib/cro/store'
-import { pickDailyQuestions } from '@/lib/quiz'
+import { pickDailyQuestions, pickDailyAbbreviations } from '@/lib/quiz'
 import { IssueView } from './IssueView'
 import { DailyQuiz } from './Quiz'
 
@@ -9,6 +9,7 @@ export default async function HomePage() {
   const issue = await getLatestCroIssue()
   const today = new Date().toISOString().slice(0, 10)
   const questions = pickDailyQuestions(today, 8)
+  const abbrQuestions = pickDailyAbbreviations(today, 6)
 
   return (
     <>
@@ -25,7 +26,12 @@ export default async function HomePage() {
 
       <section className="quiz-section">
         <div className="issue-meta">每日一练 · CRO 行业知识</div>
-        <DailyQuiz questions={questions} dateISO={today} />
+        <DailyQuiz questions={questions} dateISO={today} variant="daily" />
+      </section>
+
+      <section className="quiz-section">
+        <div className="issue-meta">缩写速记 · 行业名词大闯关</div>
+        <DailyQuiz questions={abbrQuestions} dateISO={today} variant="abbr" />
       </section>
     </>
   )
