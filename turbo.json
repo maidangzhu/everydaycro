@@ -1,5 +1,17 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalEnv": [
+    "DATABASE_URL",
+    "AI_GATEWAY_EVERYDAY_CRO",
+    "AI_GATEWAY_API_KEY",
+    "EXA_API_KEY",
+    "OPENROUTER_API_KEY",
+    "OPENROUTER_BASE_URL",
+    "OPENROUTER_MODEL",
+    "CRON_SECRET",
+    "SEARCH_PROVIDER",
+    "NODE_ENV"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build", "db:generate"],
