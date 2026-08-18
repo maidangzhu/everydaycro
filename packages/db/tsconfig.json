@@ -1,0 +1,10 @@
+{
+  "extends": "@everydaycro/config/tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@everydaycro/config/*": ["../config/*"]
+    }
+  },
+  "include": ["index.ts", "prisma.config.ts", "src/generated/**/*"]
+}
+

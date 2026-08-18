@@ -1,0 +1,81 @@
+generator client {
+  // Prisma 7 推荐的 prisma-client：直接产出 TS client 源，monorepo/打包友好
+  provider = "prisma-client"
+  output   = "../src/generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model CroIssue {
+  id          String    @id @default(cuid())
+  issueDate   DateTime  @unique
+  issueNumber Int       @default(1)
+  status      String    @default("published")
+  headline    String
+  dek         String
+  summary     String    @default("")
+  sourceCount Int       @default(0)
+  generatedAt DateTime  @default(now())
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  items       CroItem[]
+
+  @@index([issueDate])
+  @@index([status, issueDate])
+}
+
+model CroItem {
+  id        String   @id @default(cuid())
+  issueId   String
+  rank      Int
+  section   String
+  title     String
+  summary   String
+  detail    String   @default("")
+  takeaway  String   @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  issue     CroIssue @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  sources   CroSource[]
+
+  @@unique([issueId, rank])
+  @@index([issueId])
+  @@index([section])
+}
+
+model CroSource {
+  id          String    @id @default(cuid())
+  itemId      String
+  title       String
+  url         String
+  publisher   String?
+  publishedAt DateTime?
+  excerpt     String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  item        CroItem   @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@unique([itemId, url])
+  @@index([itemId])
+  @@index([url])
+}
+
+// 深度专栏：AI 基于近期精选 issue 生成的专题长文。tags 为搜索/商业化预留。
+model Post {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  kind        String    @default("article")
+  dek         String    @default("")
+  body        String
+  tags        String[]  @default([])
+  issueDate   DateTime?
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([kind, publishedAt])
+}

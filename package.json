@@ -4,29 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "generate": "tsx scripts/generate.ts"
-  },
-  "dependencies": {
-    "@ai-sdk/openai": "^4.0.40",
-    "@prisma/adapter-pg": "^7.9.1",
-    "@prisma/client": "^7.9.1",
-    "ai": "^7.0.62",
-    "next": "15.3.4",
-    "prisma": "^7.9.1",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "zod": "^4.4.3"
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "lint": "turbo run lint",
+    "generate": "turbo run generate",
+    "db:generate": "turbo run db:generate",
+    "db:migrate": "turbo run db:migrate"
   },
   "devDependencies": {
-    "@types/node": "20.11.17",
-    "@types/react": "19.2.17",
-    "@types/react-dom": "^19.0.0",
-    "dotenv": "^17.4.2",
-    "tsx": "4.20.3",
+    "turbo": "^2.5.0",
     "typescript": "5.8.3"
+  },
+  "packageManager": "pnpm@11.21.0",
+  "engines": {
+    "node": ">=20"
   }
 }

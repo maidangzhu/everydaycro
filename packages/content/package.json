@@ -1,0 +1,26 @@
+{
+  "name": "@everydaycro/content",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./quiz": "./src/quiz.ts",
+    "./learning-path": "./src/learning-path.ts",
+    "./ai": "./src/ai/index.ts"
+  },
+  "scripts": {
+    "generate": "tsx src/generate.ts",
+    "generate:column": "tsx src/generate-column.ts"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^4.0.40",
+    "@everydaycro/db": "workspace:*",
+    "ai": "^7.0.62",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "dotenv": "^17.4.2",
+    "tsx": "4.20.3"
+  }
+}
