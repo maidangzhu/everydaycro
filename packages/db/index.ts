@@ -17,9 +17,17 @@ function createPrismaClient() {
   return new PrismaClient({ adapter })
 }
 
-export const prisma = globalForPrisma.prisma ?? createPrismaClient()
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+/**
+ * 惰性单例：import 本包不再立即创建 client（缺 DATABASE_URL 时不在模块评估期抛错，
+ * EVE agent 等独立运行时才能顺利加载 authored 模块），首次真正用到时才连接。
+ */
+export const prisma: PrismaClient = new Proxy({} as PrismaClient, {
+  get(_target, prop, receiver) {
+    if (!globalForPrisma.prisma) globalForPrisma.prisma = createPrismaClient()
+    const value = Reflect.get(globalForPrisma.prisma, prop, receiver)
+    return typeof value === 'function' ? value.bind(globalForPrisma.prisma) : value
+  },
+})
 
 export type { PrismaClient }
 // 类型与命名空间（Prisma、模型类型）从生成的 client 透出，供 content/web 使用

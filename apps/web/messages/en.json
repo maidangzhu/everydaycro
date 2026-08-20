@@ -1,0 +1,168 @@
+{
+  "nav": {
+    "home": "Home",
+    "archive": "Daily Digest",
+    "learn": "Learn",
+    "column": "Deep Dives",
+    "agent": "AI Assistant",
+    "login": "Sign in",
+    "register": "Sign up",
+    "logout": "Sign out",
+    "admin": "Admin",
+    "themeToggle": "Toggle theme"
+  },
+  "footer": {
+    "tagline": "Curating the latest AI × CRO (contract research organization) developments from overseas pharma sources, every day."
+  },
+  "home": {
+    "todayTitle": "Today's Picks",
+    "todaySub": "Fresh CRO × AI developments from around the world",
+    "archiveLink": "Archive",
+    "pathTitle": "Learning Path",
+    "pathSub": "4 weeks from zero to CRO × AI",
+    "start": "Start",
+    "glossaryTitle": "Glossary",
+    "glossarySub": "Industry acronyms and terms, on demand",
+    "empty": "No content yet. Run pnpm generate or hit /api/generate to create the first issue.",
+    "weekN": "Week {week}"
+  },
+  "member": {
+    "greeting": "Hi, {name}",
+    "checkin": "Daily check-in",
+    "checkedIn": "Checked in today",
+    "points": "Points",
+    "level": "Level",
+    "streak": "Streak",
+    "days": "days",
+    "loginPrompt": "Sign in to earn points and sync favorites & progress to the cloud.",
+    "goLogin": "Sign in",
+    "checkinDone": "Checked in, +{points} points",
+    "already": "Already checked in today",
+    "nextLevel": "{points} points to next level"
+  },
+  "favorite": {
+    "add": "☆ Save",
+    "added": "★ Saved"
+  },
+  "news": {
+    "detail": "Read more",
+    "back": "← Back to column",
+    "backLearn": "← Back to learn",
+    "sources": "Sources",
+    "takeaway": "Takeaway",
+    "viewSource": "View original",
+    "issueMeta": "Issue #{n} · {date} · {count} picks"
+  },
+  "sections": {
+    "lead": "Top Story",
+    "trial": "Clinical Trials",
+    "tooling": "Tooling",
+    "company": "Companies",
+    "policy": "Regulation",
+    "voice": "Voices"
+  },
+  "archivePage": {
+    "title": "Daily Digest",
+    "sub": "One issue per day, CRO × AI from overseas sources",
+    "empty": "No issues yet.",
+    "issueMeta": "Issue #{n} · {count} picks"
+  },
+  "columnPage": {
+    "title": "Deep Dives",
+    "sub": "Long-form specials distilled by AI from daily picks",
+    "empty": "No posts yet. Run pnpm generate:column to create the first one."
+  },
+  "learnPage": {
+    "pathTitle": "Learning Path",
+    "pathSub": "4 weeks from zero to CRO × AI, one week at a time",
+    "glossaryTitle": "Glossary",
+    "glossarySub": "Industry acronyms and terms, on demand"
+  },
+  "quiz": {
+    "correct": "Correct ✓",
+    "wrong": "The right answer is highlighted",
+    "next": "Next",
+    "result": "See results",
+    "again": "Try again",
+    "resultSub": "Correct answers this week (counted toward your progress)"
+  },
+  "auth": {
+    "loginTitle": "Sign in to everydaycro",
+    "registerTitle": "Join everydaycro",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "loginBtn": "Sign in",
+    "registerBtn": "Sign up",
+    "toRegister": "No account? Sign up",
+    "toLogin": "Already have an account? Sign in",
+    "loginFailed": "Incorrect email or password",
+    "registerFailed": "Sign-up failed, the email may already be taken",
+    "weakPassword": "Password must be at least 8 characters",
+    "fillAll": "Please fill in all fields"
+  },
+  "agent": {
+    "title": "AI Assistant",
+    "sub": "Your in-site CRO × AI research assistant: digests, deep dives, glossary, and web search",
+    "placeholder": "Ask anything, e.g. what's in the latest digest?",
+    "send": "Send",
+    "stop": "Stop",
+    "loginRequired": "Sign in to use the AI assistant",
+    "goLogin": "Sign in",
+    "thinking": "Thinking…",
+    "you": "You",
+    "assistant": "Assistant",
+    "error": "Something went wrong, please retry",
+    "suggestions": {
+      "s1": "What's in the latest daily digest?",
+      "s2": "What does CRO mean?",
+      "s3": "How is AI used in trial recruitment?",
+      "s4": "What does week 1 of the learning path cover?"
+    }
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "content": "Content",
+    "backToSite": "Back to site",
+    "noAccess": "No access to admin",
+    "stats": {
+      "issues": "Digest issues",
+      "posts": "Deep dives",
+      "users": "Registered users",
+      "pointsIssued": "Points issued"
+    },
+    "usersPage": {
+      "title": "Users",
+      "email": "Email",
+      "name": "Name",
+      "role": "Role",
+      "status": "Status",
+      "joined": "Joined",
+      "points": "Points",
+      "actions": "Actions",
+      "active": "Active",
+      "banned": "Banned",
+      "ban": "Ban",
+      "unban": "Unban",
+      "save": "Save",
+      "saved": "Saved",
+      "self": "you"
+    },
+    "contentPage": {
+      "title": "Content",
+      "issueList": "Recent digests",
+      "postList": "Deep dives",
+      "items": "items",
+      "published": "Published",
+      "draft": "Draft",
+      "publish": "Publish",
+      "unpublish": "Unpublish",
+      "generateIssue": "Generate today's digest",
+      "generatePost": "Generate a new deep dive",
+      "generating": "Generating…",
+      "generateOk": "Generated",
+      "generateFailed": "Generation failed (check AI / Exa config)"
+    }
+  }
+}

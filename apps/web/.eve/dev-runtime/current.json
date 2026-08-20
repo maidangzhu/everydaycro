@@ -1,0 +1,7 @@
+{
+  "appRoot": "/workspace/apps/web",
+  "kind": "eve-dev-runtime-artifacts-pointer",
+  "runtimeAppRoot": "/workspace/apps/web/.eve/dev-runtime/snapshots/mt1o0v5c-216b3a5c-9996-487c-bc79-10d6f93f2625/source/apps/web",
+  "snapshotRoot": "/workspace/apps/web/.eve/dev-runtime/snapshots/mt1o0v5c-216b3a5c-9996-487c-bc79-10d6f93f2625",
+  "version": 2
+}

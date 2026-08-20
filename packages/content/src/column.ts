@@ -20,14 +20,19 @@ const columnSchema = z
   .strict()
 
 export async function listPosts(limit = 30) {
+  // 只列已发布（publishedAt 非空）；后台下架的文章不再出现在前台/Agent
   return prisma.post.findMany({
+    where: { publishedAt: { not: null } },
     orderBy: { publishedAt: 'desc' },
     take: limit,
   })
 }
 
 export async function getPostBySlug(slug: string) {
-  return prisma.post.findUnique({ where: { slug } })
+  // 详情页与 Agent 都只读已发布文章
+  return prisma.post.findFirst({
+    where: { slug, publishedAt: { not: null } },
+  })
 }
 
 function stripCodeFence(value: string) {

@@ -4,45 +4,45 @@
 
 @layer base {
   :root {
-    /* 品牌令牌：浅底 + 品牌绿 accent（源自 #0f5c46 / #fafaf7） */
-    --background: 45 27% 97%;
-    --foreground: 30 4% 11%;
+    /* Medium 风格令牌：白底近黑正文 + 品牌绿 accent（#1A8917 系） */
+    --background: 40 14% 99%;
+    --foreground: 0 0% 13%;
     --card: 0 0% 100%;
-    --card-foreground: 30 4% 11%;
-    --primary: 161 72% 21%;
-    --primary-foreground: 45 30% 98%;
-    --secondary: 45 16% 92%;
-    --secondary-foreground: 161 72% 21%;
-    --muted: 45 12% 92%;
-    --muted-foreground: 30 5% 40%;
-    --accent: 45 16% 90%;
-    --accent-foreground: 161 72% 21%;
+    --card-foreground: 0 0% 13%;
+    --primary: 118 71% 31%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 118 71% 26%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 41%;
+    --accent: 0 0% 95%;
+    --accent-foreground: 118 71% 26%;
     --destructive: 0 72% 45%;
     --destructive-foreground: 0 0% 98%;
-    --border: 40 12% 88%;
-    --input: 40 12% 86%;
-    --ring: 161 72% 21%;
-    --radius: 0.75rem;
+    --border: 0 0% 91%;
+    --input: 0 0% 87%;
+    --ring: 118 71% 31%;
+    --radius: 0.375rem;
   }
 
   .dark {
-    --background: 160 12% 8%;
-    --foreground: 45 20% 96%;
-    --card: 160 10% 11%;
-    --card-foreground: 45 20% 96%;
-    --primary: 158 55% 55%;
-    --primary-foreground: 160 30% 8%;
-    --secondary: 160 8% 16%;
-    --secondary-foreground: 158 55% 65%;
-    --muted: 160 8% 15%;
-    --muted-foreground: 45 8% 65%;
-    --accent: 160 10% 16%;
-    --accent-foreground: 158 55% 65%;
+    --background: 0 0% 7%;
+    --foreground: 0 0% 93%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 93%;
+    --primary: 122 55% 55%;
+    --primary-foreground: 0 0% 8%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 122 45% 65%;
+    --muted: 0 0% 13%;
+    --muted-foreground: 0 0% 64%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 122 45% 65%;
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 98%;
-    --border: 160 8% 18%;
-    --input: 160 8% 20%;
-    --ring: 158 55% 55%;
+    --border: 0 0% 19%;
+    --input: 0 0% 22%;
+    --ring: 122 55% 55%;
   }
 }
 
