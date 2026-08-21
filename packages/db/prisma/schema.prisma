@@ -63,6 +63,131 @@ model CroSource {
   @@index([url])
 }
 
+// ===== 认证（Better Auth 标准四表 + admin 插件字段）=====
+model User {
+  id            String    @id
+  name          String
+  email         String    @unique
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  // admin 插件：角色与封禁
+  role          String    @default("user")
+  banned        Boolean   @default(false)
+  banReason     String?
+  banExpires    DateTime?
+  banCount      Int       @default(0)
+  // 关联
+  sessions      Session[]
+  accounts      Account[]
+  favorites     Favorite[]
+  progress      LearningProgress[]
+  points        UserPoints?
+  pointEvents   PointLedger[]
+  checkIns      DailyCheckIn[]
+}
+
+model Session {
+  id        String   @id
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Account {
+  id                    String    @id
+  userId                String
+  accountId             String
+  providerId            String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, accountId])
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// ===== 用户态：收藏 / 学习进度（登录用户云端同步）=====
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String
+  kind      String // news | post
+  targetId  String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, kind, targetId])
+  @@index([userId, kind])
+}
+
+model LearningProgress {
+  id        String   @id @default(cuid())
+  userId    String
+  week      String // 周路径 slug
+  doneIds   String[] @default([])
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, week])
+}
+
+// ===== 积分体系 =====
+// 余额冗余在 UserPoints，明细走 PointLedger；(userId, reason, refType, refId) 唯一约束保证幂等。
+model UserPoints {
+  userId      String   @id
+  balance     Int      @default(0)
+  totalEarned Int      @default(0)
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model PointLedger {
+  id        String   @id @default(cuid())
+  userId    String
+  amount    Int
+  reason    String // daily_checkin | read_item | quiz_correct | week_complete
+  refType   String   @default("")
+  refId     String   @default("")
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, reason, refType, refId])
+  @@index([userId, createdAt])
+}
+
+// 每日签到（day 为本地时区日期串），streak 记录连续天数
+model DailyCheckIn {
+  id        String   @id @default(cuid())
+  userId    String
+  day       String // YYYY-MM-DD
+  streak    Int      @default(1)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, day])
+}
+
 // 深度专栏：AI 基于近期精选 issue 生成的专题长文。tags 为搜索/商业化预留。
 model Post {
   id          String    @id @default(cuid())

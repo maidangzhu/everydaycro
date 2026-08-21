@@ -8,6 +8,19 @@ const preset = {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        // Medium 风格：标题用衬线（Charter/Georgia 系），正文系统无衬线
+        serif: [
+          'Charter',
+          'Bitstream Charter',
+          'Sitka Text',
+          'Cambria',
+          'Georgia',
+          'Songti SC',
+          'SimSun',
+          'serif',
+        ],
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

@@ -1,0 +1,168 @@
+{
+  "nav": {
+    "home": "首页",
+    "archive": "精选日报",
+    "learn": "学习中心",
+    "column": "深度专栏",
+    "agent": "AI 助手",
+    "login": "登录",
+    "register": "注册",
+    "logout": "退出登录",
+    "admin": "后台管理",
+    "themeToggle": "切换深浅色"
+  },
+  "footer": {
+    "tagline": "每天自动整理海外医药网站与公开来源中，AI 在临床合同研究（CRO）领域的新动向。"
+  },
+  "home": {
+    "todayTitle": "今日精选",
+    "todaySub": "海外 CRO × AI 最新动向",
+    "archiveLink": "归档",
+    "pathTitle": "学习路径",
+    "pathSub": "新人 4 周上手 CRO × AI",
+    "start": "开始",
+    "glossaryTitle": "名词速查",
+    "glossarySub": "行业缩写 / 术语，随查随用",
+    "empty": "还没有内容。运行 pnpm generate 或访问 /api/generate 生成第一期。",
+    "weekN": "第 {week} 周"
+  },
+  "member": {
+    "greeting": "你好，{name}",
+    "checkin": "每日签到",
+    "checkedIn": "今日已签到",
+    "points": "积分",
+    "level": "等级",
+    "streak": "连续签到",
+    "days": "天",
+    "loginPrompt": "登录后可签到攒积分，收藏与学习进度云端同步。",
+    "goLogin": "去登录",
+    "checkinDone": "签到成功，+{points} 积分",
+    "already": "今天已经签过啦",
+    "nextLevel": "距下一级还差 {points} 积分"
+  },
+  "favorite": {
+    "add": "☆ 收藏",
+    "added": "★ 已收藏"
+  },
+  "news": {
+    "detail": "看详情",
+    "back": "← 返回专栏",
+    "backLearn": "← 返回学习中心",
+    "sources": "来源",
+    "takeaway": "判断",
+    "viewSource": "查看原文",
+    "issueMeta": "第 {n} 期 · {date} · 精选 {count} 条"
+  },
+  "sections": {
+    "lead": "头版",
+    "trial": "临床试验",
+    "tooling": "工具",
+    "company": "公司",
+    "policy": "监管",
+    "voice": "大佬观点"
+  },
+  "archivePage": {
+    "title": "精选日报",
+    "sub": "每天一期，海外 CRO × AI 动向",
+    "empty": "还没有任何一期。",
+    "issueMeta": "第 {n} 期 · 精选 {count} 条"
+  },
+  "columnPage": {
+    "title": "深度专栏",
+    "sub": "AI 基于每日精选沉淀的专题长文",
+    "empty": "还没有专栏。运行 pnpm generate:column 基于近期精选生成第一篇。"
+  },
+  "learnPage": {
+    "pathTitle": "学习路径",
+    "pathSub": "新人 4 周上手 CRO × AI，按周闯关",
+    "glossaryTitle": "名词速查",
+    "glossarySub": "行业缩写 / 术语，随查随用"
+  },
+  "quiz": {
+    "correct": "答对了 ✓",
+    "wrong": "正确答案已标出",
+    "next": "下一题",
+    "result": "查看结果",
+    "again": "再练一轮",
+    "resultSub": "本周答对题数（已计入学习进度）"
+  },
+  "auth": {
+    "loginTitle": "登录 everydaycro",
+    "registerTitle": "注册 everydaycro",
+    "email": "邮箱",
+    "password": "密码",
+    "name": "昵称",
+    "loginBtn": "登录",
+    "registerBtn": "注册",
+    "toRegister": "没有账号？去注册",
+    "toLogin": "已有账号？去登录",
+    "loginFailed": "邮箱或密码不正确",
+    "registerFailed": "注册失败，邮箱可能已被占用",
+    "weakPassword": "密码至少 8 位",
+    "fillAll": "请填写完整"
+  },
+  "agent": {
+    "title": "AI 助手",
+    "sub": "站内 CRO × AI 情报助理：查日报、专栏、词条，也能搜索网络",
+    "placeholder": "问点什么，比如：最近一期日报讲了什么？",
+    "send": "发送",
+    "stop": "停止",
+    "loginRequired": "登录后才能使用 AI 助手",
+    "goLogin": "去登录",
+    "thinking": "思考中…",
+    "you": "我",
+    "assistant": "助手",
+    "error": "出错了，请重试",
+    "suggestions": {
+      "s1": "最近一期日报精选了什么？",
+      "s2": "CRO 是什么意思？",
+      "s3": "AI 在临床试验招募上有什么应用？",
+      "s4": "学习路径第一周讲了什么？"
+    }
+  },
+  "admin": {
+    "dashboard": "仪表盘",
+    "users": "用户管理",
+    "content": "内容管理",
+    "backToSite": "返回前台",
+    "noAccess": "无权访问后台",
+    "stats": {
+      "issues": "日报期数",
+      "posts": "专栏文章",
+      "users": "注册用户",
+      "pointsIssued": "累计发放积分"
+    },
+    "usersPage": {
+      "title": "用户管理",
+      "email": "邮箱",
+      "name": "昵称",
+      "role": "角色",
+      "status": "状态",
+      "joined": "注册时间",
+      "points": "积分",
+      "actions": "操作",
+      "active": "正常",
+      "banned": "已封禁",
+      "ban": "封禁",
+      "unban": "解封",
+      "save": "保存",
+      "saved": "已保存",
+      "self": "当前账号"
+    },
+    "contentPage": {
+      "title": "内容管理",
+      "issueList": "最近日报",
+      "postList": "专栏文章",
+      "items": "条",
+      "published": "已发布",
+      "draft": "草稿",
+      "publish": "发布",
+      "unpublish": "撤下",
+      "generateIssue": "生成今日日报",
+      "generatePost": "生成新专栏",
+      "generating": "生成中…",
+      "generateOk": "生成成功",
+      "generateFailed": "生成失败（检查 AI / Exa 配置）"
+    }
+  }
+}
