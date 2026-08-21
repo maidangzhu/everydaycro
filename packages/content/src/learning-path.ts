@@ -1,7 +1,7 @@
 import { QUIZ_BANK, type QuizQuestion } from './quiz'
 
 /**
- * 学习路径：把题库按主题编排为 4 周，路径只是"编排数据"，题目仍以 QUIZ_BANK 为单一出处。
+ * 学习路径：把题库按主题编排为 5 周（4 周入门 + 第 5 周新版 GCP 加更），路径只是"编排数据"，题目仍以 QUIZ_BANK 为单一出处。
  * 每周列出题 id，前端按序闯关。
  */
 export type LearningWeek = {
@@ -49,6 +49,18 @@ export const LEARNING_PATH: LearningWeek[] = [
       'itt', 'sample-size', 'survival', 'noninferiority', 'e6-e9',
       'ai-matching', 'eligibility', 'synthetic-control', 'decentralized', 'rwe',
       'cro-trend', 'edc', 'edc-abbr', 'med-writing',
+    ],
+  },
+  {
+    week: 5,
+    slug: 'gcp-e6r3',
+    title: '加更 · 新版 GCP 专题',
+    desc: 'ICH E6(R3) 与中国 2026 版 GCP：QbD、风险相称、数据治理、责任边界，一次过完新规要点。',
+    questionIds: [
+      'e6r3-structure', 'e6r3-timeline', 'e6r3-annex2', 'e6r3-qbd',
+      'e6r3-proportionate', 'e6r3-datagov',
+      'nmpa-gcp-date', 'nmpa-gcp-structure', 'nmpa-participant',
+      'nmpa-responsibility', 'nmpa-transition', 'nmpa-ai',
     ],
   },
 ]
